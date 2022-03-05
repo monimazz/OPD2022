@@ -118,6 +118,7 @@ IDESP_MOGI1819 %>%
   ungroup() %>% 
   ggplot(aes(x= Ano, y=IDESP,  group=ESCOLA, color=ESCOLA)) +
   geom_line() +
+  theme_classic() +
   theme(legend.position="none") #-> p
 
   
@@ -125,10 +126,11 @@ IDESP_MOGI_med %>%
   ungroup() %>% 
   ggplot(aes(x= Ano, y=Diff,  group=ESCOLA, color=ESCOLA)) +
   geom_line() +
+  theme_classic() +
   theme(legend.position="none") #-> p
 
 
-plotly::ggplotly(p)
+#plotly::ggplotly(p)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -137,8 +139,10 @@ plotly::ggplotly(p)
 IDESP_MOGI_med10 %>% 
   ungroup() %>% 
   ggplot(aes(x= reorder(ESCOLA,mediana_tempo), y=mediana_tempo)) +
-  geom_bar(stat = "identity") +
-  coord_flip()
+  geom_bar(stat = "identity", fill = "lightblue") +
+  theme_classic() +
+  coord_flip() +
+  labs(title = "Mediana de crescimento total", y = "Mediana do crescimento do IDESP", x= "Escola")
 
 
 IDESP_MOGI_med10 <- IDESP_MOGI_med10 %>% 
@@ -149,7 +153,8 @@ IDESP_MOGI_med <- left_join(IDESP_MOGI_med, IDESP_MOGI_med10)
 IDESP_MOGI_med %>% 
   filter(tipo != is.na(tipo)) %>% 
   ggplot(aes(x= Ano, y=Diff,  group=ESCOLA, color=ESCOLA)) +
-  geom_line() #-> p
+  geom_line() +
+  theme_classic() #-> p
 
 
 #plotly::ggplotly(p)
@@ -157,7 +162,8 @@ IDESP_MOGI_med %>%
 IDESP_MOGI_med %>% 
   filter(tipo != is.na(tipo)) %>% 
   ggplot(aes(x= Ano, y=IDESP,  group=ESCOLA, color=ESCOLA)) +
-  geom_line() #-> p
+  geom_line() +
+  theme_classic()#-> p
 
 
 #plotly::ggplotly(p)
